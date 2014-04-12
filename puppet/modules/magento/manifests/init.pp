@@ -1,4 +1,4 @@
-class magento( $install, $db_user, $db_pass, $version, $admin_user, $admin_pass, $use_rewrites) {
+class magento( $install, $db_user, $db_pass, $version, $admin_user, $admin_pass, $use_rewrites, $host, $port) {
 
     if $install {
 
@@ -39,7 +39,7 @@ class magento( $install, $db_user, $db_pass, $version, $admin_user, $admin_pass,
             require => Exec["untar-magento"],
         }
 
-        host { 'magento.localhost':
+        host { "${host}":
             ip      => '127.0.0.1',
         }
 
@@ -55,10 +55,10 @@ class magento( $install, $db_user, $db_pass, $version, $admin_user, $admin_pass,
                 --db_name \"magentodb\" \
                 --db_user \"${db_user}\" \
                 --db_pass \"${db_pass}\" \
-                --url \"http://magento.localhost:8080/magento\" \
+                --url \"http://${host}:${port}/magento\" \
                 --use_rewrites \"${use_rewrites}\" \
                 --use_secure \"no\" \
-                --secure_base_url \"http://magento.localhost:8080/magento\" \
+                --secure_base_url \"http://${host}:${port}/magento\" \
                 --use_secure_admin \"no\" \
                 --skip_url_validation \"yes\" \
                 --admin_firstname \"Store\" \

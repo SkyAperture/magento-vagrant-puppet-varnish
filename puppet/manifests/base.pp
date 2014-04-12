@@ -60,6 +60,10 @@ class { 'magento':
 
     /* use rewrites [yes|no] */
     use_rewrites => 'no',
+
+    /* magento host and port */
+    host => 'magento.localhost',
+    port => 8080 /* should be identical to forwarded port in Vagrantfile */
 }
 
 /**
