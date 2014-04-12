@@ -66,6 +66,16 @@ class { 'magento':
     port => 8080 /* should be identical to forwarded port in Vagrantfile */
 }
 
+class { 'varnish':
+    /* install varnish [true|false] */
+    install => false,
+
+    /* varnish version */
+    version   => '4.0',
+    #version   => '3.0',
+    #version   => '2.1',
+}
+
 /**
  * Import modules
  */
@@ -75,3 +85,4 @@ include apache2
 include php5
 include composer
 include magento
+include varnish
